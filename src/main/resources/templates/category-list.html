@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+
+<head th:replace="fragments/header :: header-css">
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+    <div class="row">
+        <!--No subcategories-->
+        <!-- <nav class="side-menu">
+             <h3>Category</h3>
+             <ul>
+                 <li th:each="cat: ${categories}"><a th:href="@{/searchByCategory(categoryId=${cat.id})}"
+                                                     th:text="${cat.categoryName}"></a></li>
+             </ul>
+         </nav>-->
+
+        <div class="headerNav" xmlns:th="http://www.thymeleaf.org">
+            <div class="layout">
+                <dl class="all-brands">
+                    <dt class="all-brands-head"><a href="#">All product categories</a></dt>
+                    <dd class="all-brands-list">
+                        <div class="wrap" th:each="c : ${categories}">
+                            <div class="all-sort-list">
+                                <div class="item bo">
+                                    <a th:href="@{/searchByCategory(categoryId=${c.id})}"
+                                       th:text="${c.name}"></a>
+                                    <div class="item-list clearfix">
+                                        <div class="close">x</div>
+                                        <div class="subitem" th:each="s: ${c.subCategories}">
+                                            <dl class="fore1">
+                                                <a th:href="@{/searchByCategory(categoryId=${s.id})}"
+                                                   th:text="${s.name}"></a>
+                                                <dd>
+                                                    <em th:each="ss : ${s.subCategories} ">
+                                                        <a th:href="@{/searchByCategory(categoryId=${ss.id})}"
+                                                           th:text="${ss.name}"></a>
+                                                    </em>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </dd>
+
+                </dl>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
