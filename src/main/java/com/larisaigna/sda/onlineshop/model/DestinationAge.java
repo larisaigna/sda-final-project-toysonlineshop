@@ -11,10 +11,12 @@ public enum DestinationAge {
 
 
     DestinationAge(String displayValue) {
+
         this.displayValue = displayValue;
     }
 
     public String getDisplayValue() {
+
         return displayValue;
     }
 }

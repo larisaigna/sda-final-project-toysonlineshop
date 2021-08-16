@@ -27,6 +27,23 @@ public class ProductService {
         return new ArrayList<Product>((Collection<? extends Product>) productRepository.findAll());
     }
 
+    public  ProductDTO findById(Long id) {
+        Product product = productRepository.findById(id).orElse(null);
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setId(product.getId());
+        productDTO.setName(product.getName());
+        productDTO.setBrand(product.getBrand());
+        productDTO.setPrice(product.getPrice());
+        productDTO.setDescription(product.getDescription());
+        productDTO.setDestinationGender(product.getDestinationGender());
+        productDTO.setDestinationAge(product.getDestinationAge());
+        productDTO.setThumbnail(product.getThumbnail());
+        productDTO.setProductCategoryId(productDTO.getProductCategoryId());
+
+        return productDTO;
+
+    }
+
     public void save(ProductDTO productDTO) {
         Product product = new Product();
         product.setName(productDTO.getName());
@@ -39,6 +56,28 @@ public class ProductService {
         product.setCategory(categoryRepository.findById(productDTO.getProductCategoryId()).orElse(null));
 
         productRepository.save(product);
+
+    }
+
+    public void update(ProductDTO productDTO) {
+
+        Product product = productRepository.findById(productDTO.getId()).orElse(null);
+        product.setName(productDTO.getName());
+        product.setBrand(productDTO.getBrand());
+        product.setPrice(productDTO.getPrice());
+        product.setDescription(productDTO.getDescription());
+        product.setDestinationGender(productDTO.getDestinationGender());
+        product.setDestinationAge(productDTO.getDestinationAge());
+        product.setThumbnail(productDTO.getThumbnail());
+        product.setCategory(categoryRepository.findById(productDTO.getProductCategoryId()).orElse(null));
+
+        productRepository.save(product);
+    }
+
+    public void delete(Long id) {
+
+        Product product = productRepository.findById(id).orElse(null);
+        productRepository.deleteById(id);
 
     }
 }

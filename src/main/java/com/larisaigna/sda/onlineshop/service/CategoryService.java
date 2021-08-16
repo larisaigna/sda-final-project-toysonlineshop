@@ -4,6 +4,8 @@ import com.larisaigna.sda.onlineshop.model.Category;
 import com.larisaigna.sda.onlineshop.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -18,6 +20,8 @@ public class CategoryService {
     }
 
     public List<Category> getAll() {
+
+        //return new ArrayList<Category>((Collection<? extends Category>) categoryRepository.findAll());
         return StreamSupport.stream(categoryRepository.findAll().spliterator(), false).collect(Collectors.toList());
     }
 

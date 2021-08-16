@@ -1,5 +1,6 @@
 package com.larisaigna.sda.onlineshop.config;
 
+import com.larisaigna.sda.onlineshop.model.Role;
 import com.larisaigna.sda.onlineshop.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +28,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
                         "/css/**",
                         "/img/**",
                         "/webjars/**").permitAll()
+                .antMatchers("/product-list").permitAll() // pagini publice
+                .antMatchers("/add-product","/addproduct").hasAuthority(Role.ADMIN.name()) // pagini pentru admin
+                .antMatchers("/view-orders").hasAuthority(Role.USER.name()) // pagini pentru user
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()

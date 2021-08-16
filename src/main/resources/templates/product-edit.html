@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+<body>
+<div class="container my-5">
+    <h2 class="mb-5">New Product</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="#" th:action="@{/editproduct}" th:object="${product}" method="post">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="hidden" th:field="*{id}" class="form-control" id="productId">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="name" class="col-form-label">Name</label>
+                        <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="brand" class="col-form-label">Brand</label>
+                        <input type="text" th:field="*{brand}" class="form-control" id="brand" placeholder="Brand">
+                        <span th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="price" class="col-form-label">Price</label>
+                        <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="Price">
+                        <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="description" class="col-form-label">Description</label>
+                        <input type="text" th:field="*{description}" class="form-control" id="description"
+                               placeholder="Description">
+                        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                              class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="destinationGender" class="col-form-label">Destination-gender</label>
+                        <input type="text" th:field="*{destinationGender}" class="form-control" id="destinationGender"
+                               placeholder="Destination-gender">
+                        <span th:if="${#fields.hasErrors('destinationGender')}" th:errors="*{destinationGender}"
+                              class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="destinationAge" class="col-form-label">Destination-age</label>
+                        <input type="text" th:field="*{destinationAge}" class="form-control" id="destinationAge"
+                               placeholder="Destination-age">
+                        <span th:if="${#fields.hasErrors('destinationAge')}" th:errors="*{destinationAge}"
+                              class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Category</label>
+                    <select th:field="*{productCategoryId}">
+                        <div th:each="product_category : ${product_categories}">
+                            <option th:value="${product_category.getId()}"
+                                    th:text="${product_category.getName()}"></option>
+                        </div>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="thumbnail" class="col-form-label">Thumbnail</label>
+                        <input type="text" th:field="*{thumbnail}" class="form-control" id="thumbnail"
+                               placeholder="Thumbnail">
+                        <span th:if="${#fields.hasErrors('thumbnail')}" th:errors="*{thumbnail}"
+                              class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Add Product">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
